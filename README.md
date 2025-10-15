@@ -12,6 +12,7 @@ Tools to deploy Jenkins (or any other docker compose application) with systemd u
 ## Copy the compose file 
 - Copy the application's docker compose file into this folder you want to run as a systemd service
   - In this example the Jenkins deployment is customized to control docker on the host, so the Dockerfile is also needed in the same folder
+- **Note:** The docker compose file cannot have '''restart: always'''.  Use '''restart: unless-stopped''' 
 
 ## Enable and start the service
 - Turn the service on and start it with the following command:
