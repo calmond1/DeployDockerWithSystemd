@@ -14,6 +14,9 @@ Tools to deploy Jenkins (or any other docker compose application) with systemd u
   - In this example the Jenkins deployment is customized to control docker on the host, so the Dockerfile is also needed in the same folder
 - **Note:** The docker compose file cannot have `restart: always`.  Use `restart: unless-stopped` 
 
+## Make any folders needed for volumes
+- For Jenkins with this docker compose file, create the home folder for the volume with `mkdir /var/jenkins`
+
 ## Enable and start the service
 - Turn the service on and start it by running the following command as root: `systemctl enable --now compose@jenkins`
   - **Note:** The parameter after the @ is the name of the folder under /opt created earlier
