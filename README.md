@@ -1,9 +1,9 @@
-# DeployJenkinsWithDocker
-Tools to deploy Jenkins (or any other docker compose application) with systemd using docker compose
+# Deploy A Docker Compose project as a systemd service
+Tools to deploy a docker compose project with systemd using docker compose
 
 ## Adding the service file
 - Copy the compose@.service file to /etc/systemd/system/ or wherever your distribution keeps the service files
-- Run the command `systemctl daemon-reload` as root
+- Run the command `systemctl daemon-reload` 
 
 ## Create a folder for the service under /opt
 - Create a folder under /opt with the name of your service, such as *jenkins*
@@ -16,9 +16,10 @@ Tools to deploy Jenkins (or any other docker compose application) with systemd u
 
 ## Make any folders needed for volumes
 - For Jenkins with this docker compose file, create the home folder for the volume with `mkdir /var/jenkins`
+- Since docker compose files can use relative folders for volumes, I would recommend making them as subfolders of the project under /opt/*<service name>*
 
 ## Enable and start the service
-- Turn the service on and start it by running the following command as root: `systemctl enable --now compose@jenkins`
+- Turn the service on and start it by running the following command as root: `systemctl enable --now compose@*<service name>*`
   - **Note:** The parameter after the @ is the name of the folder under /opt created earlier
 
-This approach will work for any project, not just jenkins.
+This approach will work for any project, although firewalld or IP Tables will also need network ports opened for most access.
