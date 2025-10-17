@@ -12,7 +12,7 @@ Tools to deploy a docker compose project with systemd using docker compose
 ## Copy the compose file 
 - Copy the application's docker compose file into this folder you want to run as a systemd service
 - Change any secretes and move them to a .env file with proper file system permissions and ownership
-  - In this example the Jenkins deployment is customized to control docker on the host, so the Dockerfile is also needed in the same folder
+  - If you have a customized image, such as this repository's Jenkins setup, the Dockerfile is also needed in the same folder
 - **Note:** The docker compose file cannot have `restart: always`.  Use `restart: unless-stopped` 
 
 ## Make any folders needed for volumes
