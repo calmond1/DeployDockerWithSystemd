@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   codellama:
     image: ghcr.io/berriai/litellm-codellama-server:latest
