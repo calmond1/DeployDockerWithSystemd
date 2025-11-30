@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  codellama:
+    image: ghcr.io/berriai/litellm-codellama-server:latest
+    container_name: codellama-server
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Choose which CodeLlama model to serve; examples:
+      #   codellama/CodeLlama-7b-hf
+      #   codellama/CodeLlama-13b-hf
+      #   codellama/CodeLlama-34b-hf
+      MODEL_NAME: "codellama/CodeLlama-7b-hf"
+
+      # Optional: OpenAI-compatible API key required by the server
+      OPENAI_API_KEY: "changeme"
+
+      # Optional performance / behavior settings
+      MAX_TOKENS: "1024"
+      TEMPERATURE: "0.2"
+
+    # Uncomment this block if you want GPU (NVIDIA) support
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: ["gpu"]
+
+    volumes:
+      # Cache downloaded models so they are not re-downloaded every time
+      - codellama-cache:/root/.cache/huggingface
+
+volumes:
+  codellama-cache:
