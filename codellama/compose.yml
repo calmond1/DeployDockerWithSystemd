@@ -1,6 +1,6 @@
 services:
   codellama:
-    image: ghcr.io/berriai/litellm-codellama-server:latest
+    image: litellm-codellama-server:latest
     container_name: codellama-server
     restart: unless-stopped
     ports:
@@ -28,7 +28,4 @@ services:
 
     volumes:
       # Cache downloaded models so they are not re-downloaded every time
-      - codellama-cache:/root/.cache/huggingface
-
-volumes:
-  codellama-cache:
+      - ./codellama-cache:/root/.cache/huggingface
